@@ -99,7 +99,7 @@ Content in the first column | Content in the second column
 
 _**MY CONTENTS**_
 
-List of 4th Toast Rookie members
+*토스트 루키 4기 명단*
 
 이름  |  소속 
 ----- | -----
