@@ -1,3 +1,9 @@
+---
+layout: post
+title:  "DA Index"
+date:   2017-01-09 17:00:43 +0900
+categories: jekyll update
+---
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/klicious/klicious.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
