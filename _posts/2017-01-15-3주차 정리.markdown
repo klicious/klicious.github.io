@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "토스트루키 4기 2주차 기록"
+title:  "토스트루키 4기 3주차 기록"
 date:   2017-01-15 18:30:12 +0900
 categories: jekyll update
 ---
@@ -43,7 +43,7 @@ categories: jekyll update
 
 우선 코드를 봅시다.
 
-'''JSP
+```html
 <form class="navbar-form navbar-right">
   <div class="input-group">
     <input type="text" class="form-control" placeholder="Search">
@@ -54,7 +54,7 @@ categories: jekyll update
     </div>
   </div>
 </form>
-'''
+```
 
 분명히 같은코드인데 html 페이지를 만들어서 Chrome에 띄우면
 ![Search Icon HTML](/assets/img/for_post/week2/search_icon_html.PNG)
@@ -82,7 +82,7 @@ CSS에 각 항목별로 .xxxx{} 함수를 만든 후 반복되는 것은 함수�
 
 ##### semantics + function
 
-'''CSS
+```CSS
 #content {
   font-size: 14px;
 }
@@ -95,14 +95,14 @@ CSS에 각 항목별로 .xxxx{} 함수를 만든 후 반복되는 것은 함수�
 .content-filler > a {
   <!-- 여기에 들어가는 것들은 모드 content-filler class 아래에 있는 <a>에만 적용 -->
 }
-'''
+```
 
 시맨틱은 #표시로, 펑션은 .표시로 알 수 있다.
 각 시멘틱/펑션 이름 이루 > a 이런식으로 >표시를 해준다면 주어진 시멘틱/펑션 바로아래에 해당하는
 a 또는 표시된 항목들에 적용된다.
 
 ##### media Query
-'''CSS
+```CSS
 @media screen and (max-width: 960px){
   .a {
     width: 100%;
@@ -112,7 +112,7 @@ a 또는 표시된 항목들에 적용된다.
     margin: 0 auto;
   }
 }
-'''
+```
 
 이런식으로 미디어 쿼리를 주게되면 조건부에 맞추어 UI를 조정할 수 있다.
 responsive 항목들이 창의 크기가 달리짐에따라 깨지기도 하는데 미디어 쿼리로 조정한다면
