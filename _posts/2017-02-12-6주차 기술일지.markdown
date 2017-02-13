@@ -1,0 +1,120 @@
+---
+layout: post
+title:  "토스트루키 4기 6주차 기술일지"
+date:   2017-02-12 18:20:42 +0900
+categories: jekyll update
+---
+
+# 토스트루키 캠프 4기 [기술교육 6주차] - 개발 시작 5주차
+
+### AHP란 무엇인가?
+
+우리나라말로 _계층 분석 방법_ 이라 칭하고 있다. 다수 대안에 대한 다면적 평가 기준을 통한 의사 결정 지원 방법의 하나이다.
+
+### 무엇이 좋은가?
+
+이 방법은 무조건 '옳은' 결정보다는 의사결정권을 가진 사람이 '최선의' 결정을 할 수 있도록 도와주는 _프로세스_ 이다. 적용 가능 분야는 경제, 경영, 국방, 정치 등 여러분야에 더러 적용될 수 있다. 장점이 여러모로 많은 AHP 지만 크게 4가지만 소개해 보겠다.
+
+1. 의사결정참여자의 판단의 '논리적 일관성을 검증' 해준다
+2. '합리적 그룹의사결정'을 도출할 수 있도록 지원한다.
+3. 리스크 관리 및 비상계획(contingency plan)을 가능하게 한다.
+4. 합리적 갈등해소 및 자원배분을 가능하게 한다.
+
+### 절차
+
+1. 의사결정문제를 상호 관련된 의사결정 사항들의 계층으로 분류하여 의사결정계틍-의사결정모형을 설정한다.
+  * 일반적으로 기업의 의사결정 문제는 다요소의사결정의 속성을 가지고 있으며, 복잡하고 상호연관적인 경우가 많다.
+  * 이런 문제를 해결하기 위하여, 관련된 의사결정 요소-기준을 명문화하여 계층적인 구조로 만들어 낸다.
+  * 계획이나, 정책을 세울 경우 전향과정(Forwarding), 후향과정(Backwarding)을 거쳐 좀 더 구체적인 미래(목표)를 수립한다.
+  * 최소 구현 모델은 3단 구성으로 최상위단인 목표(Goal), 평가 기준단인 기준(Criteria), 최하위단인 대안(Alternative)로 구성이 된다.
+
+  ![AHP Hierarchy](/assets/img/for_post/week3/953px-AHPHierarchy3.0.png)
+
+2. 의사결정 요소들 간의 쌍대비교로 판단자료를 수집한다.
+3. 고유치(eigen-value) 방법을 사용하여 의사결정요소의 상대적 가중치를 추정한다.
+4. 평가대상이 되는 여러대안들에 대한 종합순위를 얻기 위하여 의사결정 요소들의 상대적인 가중치를 종합화한다.
+
+
+출처 - https://ko.wikipedia.org/wiki/%EA%B3%84%EC%B8%B5_%EB%B6%84%EC%84%9D%EB%B2%95
+
+## Analytic hierarchy process - car example
+
+역시 글로 보는 것 보다는 실제로 해보면 더욱 습득이 쉬운것이 진리인듯 하다.
+이 방법의 매력은 측정 가능한것들과 불가능한것들 모두를 고려해서 명확한 결론에 다다를 수 있다는 것!
+
+### 실제 예시: 자동차 고르기
+
+#### 계층 분류하기
+
+자 가족이 자동차를 사려 한다고 가정해 보자.
+
+목표(Goal): 가족을 위한 최고의 자동차 고르기
+상위기준(Criteria): 가격 / 안정성 / 스타일 / 성능
+하위기준(Sub-Criteria):  가격 -> 매입가, 연비, 유지비, 중고판매비 등...
+대안(Alternative): 자동차 상품들...
+
+그림으로 보자.
+
+![AHP Jones-01](/assets/img/for_post/week3/650px-AHPJones01.png)
+
+이런식으로 계층을 만들어 각 항목에대한 분류를 하는 것부터 시작한다.
+
+#### 목표에 대해 각 기준(Critereia)별로 1:1 비교분석 하기
+
+자 이제 기준별로 비교를 해서 _**뭣이 중헌디!!**_ 를 정해야 한다 ! 비교할떄는 한번에 한개씩만 비교해서 비교우위를 결정하도록 한다. 중요한 것의 기준은 목표를 이루는데에 얼마나 중요한가?이다. 여기서는 가족에게 좋은 맞는 목표에 맞추어 가격/안정성/스타일/성능 들을 고려해주면 되겠다. 비교할때는 무조건 1:1 비교가 원칙이다.
+
+서로를 비교할떄 점수를 매기게 되는데 점수를 매기는 기준은 다음과 같다.
+
+![AHP Fundamental Scale](/assets/img/for_post/week3/AHPFundamentalScale.png)
+
+위의 표를 기준으로 각 기준들을 비료하는 표를 만들어 보자
+
+![AHP Jones Criteria](/assets/img/for_post/week3/AHPJonesCriteria01.png)
+
+#### 계산하는 방법
+
+
+우선 테이블을 만들어 각 항목별로 하나하나 1:1 비교를 시행한다. 점수 산정 기준은 위의 _"AHP Fundamental Scale"_ 표를 참고해서 적용한다. 아래는 우리 프로젝트를 기준으로 예제를 만들어 보았다.
+
+![Table: AHP Score Calculation Example](/assets/img/for_post/week3/ahp_score_calc_example.png)
+
+그리고 표에서 나온 숫자를 기준으로 _(해당 기준 점수) / (Column 별 총 점수)_ 를 하게되면 각 기준별로 weight (가중치가 나온다). 이런식의 계산법을 예제에 적용하면 아래와 같이 나온다.
+
+![Table: AHP Weight Calculation Example](/assets/img/for_post/week3/ahp_weight_calc_example.png)
+
+여기서 Average를 구한 이유는 데이터에 consistency를 주기 위함이다. 완벽한 decision maker라면 Raw 점수를 가중치로 변환했을떄 각 column이 모두 같은 숫자를 가지고 있어야 한다. 하지만 그렇게 하지 못할 경우 각 항목별로 average를 사용함으로써 오차의 범위를 최소화 하도록 한다.
+
+이런식으로 점수를 산정하게 되는데 최종형태의 느낌은 아래 Diagram과 같다. 다시 자동차 예제로 돌아가 이런식의 점수 산정이 완료 되었을 때의 형태를 잘 알아볼 수 있다.
+
+![AHP Jones-03](/assets/img/for_post/week3/650px-AHPJones03.png)
+
+
+(출처 - http://mat.gsia.cmu.edu/classes/mstc/multiple/node4.html)
+
+
+
+#### 목표에 대해 각 대안(Alternative)별로 1:1 비교분석 하기
+
+여기서는 기준(Criteria) 하위의 대안(Alternative)별로 비교를 해서 _**뭣이 중헌디!!**_ 를 정해야 한다!
+
+##### 매입 가격
+
+매입 가격을 기준으로 어떤 자동차가 가족을 위한 최고의 자동차 인지 판별해보자. 가족의 budget은 $25,000 달러, 적당한(?) 가격 선에서 budget을 초과해도 상관 없다고 생각하고 진행해 보자.
+
+![AHP Jones Alternatives Purchase Price List](/assets/img/for_post/week3/AHPJonesPurchasePrice02.png)
+
+이 가격표를 기준으로 테이블을 만들어 1:1 비교를 진행해 보자. 많은 1:1 비교를 조금 더 편하게 하기 위해 아래와 같은 worksheet를 만들어 보았다.
+
+![AHP Jones Alternatives Purchase Price  Worksheet](/assets/img/for_post/week3/AHPJonesPurchasePrice03.png)
+
+자 그럼 이 worksheet로 무엇을 하면 될까? 우선 간단한 접근방법으로는 가격 비교 ratio를 고려해서 더 저렴한 자동차가 좋은 자동차이다 라는 접근을 해볼 수 있다. 하지만 이 방법은 우리 가족이 가지고 있는 $25,000 달러의 budget은 전혀 고려하지 못한다. 이 매입을 통해 얼마를 더 쓰게 되는지 혹은 아끼게 되는지 등의 정보를 말이다. 그러므로 무조건 싼게 좋은거다 라는 식의 접근방법은 좋은 방법이라 볼 수 없다.
+
+그럼 budget을 고려해서 다시 해보자. 우리 가족의 budget은 $25,000 달러이지만 $26,000 달러까지 지출할 의향이 있되 $26,000 달러를 초과하는 일은 절대로 안됀다고 가정해보자. 여기에도 과저 기준(Criteria)에 적용 했던 점수 산정 기준을 적용할 수 있다. 우리 가족에게 $1,000 달러는 3점 $5,000 달러는 5점 $10,000 달러는 7점 이라는 식의 점수 적용을 해서 기준(Criteria)때와 똑같이 적용해 본다.
+
+##### 선정 방법!
+
+매입 가격 때와 같이 모든 기준(Criteia) 별로 대안(Alternative) 가중치를 계산한 뒤 각 대안별로 점수를 합산하게 되면 가장 고득점을 한 대안(Alternative)이 선정되게 된다.
+
+출처 - https://en.wikipedia.org/wiki/Analytic_hierarchy_process_%E2%80%93_car_example
+
+## ProxyPass
