@@ -1,0 +1,72 @@
+---
+layout: post
+title:  "토스트루키 4기 질문 list"
+date:   2017-02-19 15:57:11 +0900
+categories: jekyll update
+---
+
+# 토스트루키 캠프 4기 [기술교육 7주차] - 개발 시작 6주차
+
+## 목적
+
+루키캠프가 어느덧 절반이상이 지나있는 이 시점에 이미 늦은 것일지도 모르겠으나, 문득 모든것이 너무 빨리 지나가서 교육내용을 소화시키지 못하고 그냥 지나쳐 간다는 생각이 들었다. 그래서 모든 질문은 최대한 그때그때 답을 얻어야겠다고 생각했으나 미천한 나의 지능이 모든것을 그리 빨리 습득하지 못하고 있으므로, 모르는것이 생기면 적어두었다가 나중에 정리해놓고 공부해야겠다는 생각이 들었다. 그래서 이번주부터 질문 리스트를 작성하고 그것을 하나씩 공부하고 답해가면서 리스트를 체크해 지워나가기로 했다.
+
+## QUESTIONS!!
+
+### 일반
+- [ ] 서버 배포 방법
+
+
+### TDD 수업 (feat. JUnit)
+ - [ ] IntegrationTest vs Unit Test
+ - [ ]  * 어느것을 언제 어디서 사용하는가?
+ - [ ]  Mockito는 반드시 사용하는가?
+ - [ ]  Stub/Stubbing
+ - [ ]  Provisioning
+ - [ ]  Vagrant vs Docker
+
+### 읽기 좋은 코드
+ - [ ] ps-ef = Jenkins file?
+ - [ ] Validation은 Validator
+
+### Spring MVC
+ - [ ] SET 와 LIST의 차이
+ - [ ] Stereotype annotation: (conponent -> 기타3개 아무거나 가능)??
+ - [ ] Exception Handling: 최상위 = throwable(?)
+ - [ ] @ControllerAdvice: 모든 Exception을 하나의 class에서 Handling
+ - [ ] Binding Results, JSR 303 @Valid
+ - [ ] Repository Layer: controller -> service -> repository
+
+### 코드리뷰
+ - [ ] Dictionary와 Map의 차이
+ - [ ] 한 interface에 연결되어 있는 다양한 qualifier를 상황에 맞게 바꾸어 적용하는 방법
+```JAVA
+Map<K,V> oauth = new HashMap<K,V>();
+oauth.put("payco"m new Payco());
+```
+와 같은 형식으로?!
+ - [ ] REDIS에 session Object한개를 통채로 박지 말고 *KEY(SSID,KEY)* 로 Value갑을 집어넣는 방법
+ - [ ] @LoginRequire / @Valid 와 같은 *annotation* 으로 로그인 여부에 따라 접근성을 제어하는 방법
+ - [ ] *annotation* 을 사용하여 session을 *parameter* 로 받아오는 방법
+ - [ ] FallbackSession 과 같은 함수를 만들어서 REDIS/DB와 같이 여러 SESSION관리 방법 활용
+ ```JAVA
+FallbackSession(List<Session> sessions)
+ ```
+
+### Database 검수결과
+ - [ ] 반정규화
+ - [ ] 인조/본질 식별자
+
+### TalkDay
+ - [ ] 해외 컨퍼런스 방문 어떻게하나요?
+ - [ ] 개인에 대한 평가 vs 팀 단위 평가
+
+### OAuth
+ - [ ] RSS
+ - [ ] RFC로 정의되어있다?
+ - [ ] Session의 생명주기
+ - [ ] CSRF, XSS
+ - [ ] JWT
+
+### 신입기술교육 (SQL)
+ - [ ] Key-length = index의 row당 크기(??)
