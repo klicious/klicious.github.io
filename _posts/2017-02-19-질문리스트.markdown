@@ -14,59 +14,187 @@ categories: jekyll update
 ## QUESTIONS!!
 
 ### 일반
+
 - [ ] 서버 배포 방법
 
 
 ### TDD 수업 (feat. JUnit)
- - [ ] IntegrationTest vs Unit Test
- - [ ]  * 어느것을 언제 어디서 사용하는가?
- - [ ]  Mockito는 반드시 사용하는가?
- - [ ]  Stub/Stubbing
- - [ ]  Provisioning
- - [ ]  Vagrant vs Docker
+
+- [ ] IntegrationTest vs Unit Test
+- [ ]  * 어느것을 언제 어디서 사용하는가?
+- [ ]  Mockito는 반드시 사용하는가?
+- [ ]  Stub/Stubbing
+- [ ]  Provisioning
+- [ ]  Vagrant vs Docker
 
 ### 읽기 좋은 코드
- - [ ] ps-ef = Jenkins file?
- - [ ] Validation은 Validator
+
+- [ ] ps-ef = Jenkins file?
+- [ ] Validation은 Validator
 
 ### Spring MVC
- - [ ] SET 와 LIST의 차이
- - [ ] Stereotype annotation: (conponent -> 기타3개 아무거나 가능)??
- - [ ] Exception Handling: 최상위 = throwable(?)
- - [ ] @ControllerAdvice: 모든 Exception을 하나의 class에서 Handling
- - [ ] Binding Results, JSR 303 @Valid
- - [ ] Repository Layer: controller -> service -> repository
+
+- [ ] SET 와 LIST의 차이
+- [ ] Stereotype annotation: (conponent -> 기타3개 아무거나 가능)??
+- [ ] Exception Handling: 최상위 = throwable(?)
+- [ ] @ControllerAdvice: 모든 Exception을 하나의 class에서 Handling
+- [ ] Binding Results, JSR 303 @Valid
+- [ ] Repository Layer: controller -> service -> repository
+- [ ] @Controller, @Service, xml을 통한 bean 설정이 각각 어떤 설정을 하고 어떻게 다른가?
+- [ ] Annotation 주입이 이 XML 주입 이전에 수행된다!
 
 ### 코드리뷰
- - [ ] Dictionary와 Map의 차이
- - [ ] 한 interface에 연결되어 있는 다양한 qualifier를 상황에 맞게 바꾸어 적용하는 방법
+
+#### Sprint 6
+
+- [ ] Dictionary와 Map의 차이
+- [ ] 한 interface에 연결되어 있는 다양한 qualifier를 상황에 맞게 바꾸어 적용하는 방법
 ```JAVA
 Map<K,V> oauth = new HashMap<K,V>();
 oauth.put("payco"m new Payco());
 ```
 와 같은 형식으로?!
- - [ ] REDIS에 session Object한개를 통채로 박지 말고 *KEY(SSID,KEY)* 로 Value갑을 집어넣는 방법
- - [ ] @LoginRequire / @Valid 와 같은 *annotation* 으로 로그인 여부에 따라 접근성을 제어하는 방법
- - [ ] *annotation* 을 사용하여 session을 *parameter* 로 받아오는 방법
- - [ ] FallbackSession 과 같은 함수를 만들어서 REDIS/DB와 같이 여러 SESSION관리 방법 활용
+- [ ] REDIS에 session Object한개를 통채로 박지 말고 *KEY(SSID,KEY)* 로 Value갑을 집어넣는 방법
+- [ ] @LoginRequire / @Valid 와 같은 *annotation* 으로 로그인 여부에 따라 접근성을 제어하는 방법
+- [ ] *annotation* 을 사용하여 session을 *parameter* 로 받아오는 방법
+- [ ] FallbackSession 과 같은 함수를 만들어서 REDIS/DB와 같이 여러 SESSION관리 방법 활용
  ```JAVA
 FallbackSession(List<Session> sessions)
  ```
 
+#### Sprint 7
+
+- [ ] Service 를 Interceptor/Resolver에서 쓰는것이 맞는가?
+- [ ] Service 함수 내에서 Autowire를 하고 Intercepter에서 그 함수를 호출하면 request값이 제대로 적용되지 않는것 같다 왜그런가?
+
+
 ### Database 검수결과
- - [ ] 반정규화
- - [ ] 인조/본질 식별자
+
+- [ ] 반정규화
+- [ ] 인조/본질 식별자
 
 ### TalkDay
- - [ ] 해외 컨퍼런스 방문 어떻게하나요?
- - [ ] 개인에 대한 평가 vs 팀 단위 평가
+
+- [ ] 해외 컨퍼런스 방문 어떻게하나요?
+- [ ] 개인에 대한 평가 vs 팀 단위 평가
 
 ### OAuth
- - [ ] RSS
- - [ ] RFC로 정의되어있다?
- - [ ] Session의 생명주기
- - [ ] CSRF, XSS
- - [ ] JWT
+
+- [ ] RSS
+- [ ] RFC로 정의되어있다?
+- [ ] Session의 생명주기
+- [ ] CSRF, XSS
+- [ ] JWT
 
 ### 신입기술교육 (SQL)
- - [ ] Key-length = index의 row당 크기(??)
+
+- [ ] Key-length = index의 row당 크기(??)
+
+### bash / Shell command
+
+- [ ] netstat
+- [ ] grep
+
+### Spring Scheduler @annotation
+
+- [ ] cron / cron expression
+
+### Maven
+
+- [ ] repository 추가 (nClavis 넣을 때 nhnentRepository.naver를 추가해야 했다.)
+
+### Apache
+
+#### Configuration `apache/conf/httpd.conf`
+
+- [ ] Modules
+- [ ] proxy_module, proxy_connect_module, proxy_http_module.. etc...
+
+```sh
+#LoadModule proxy_connect_module modules/mod_proxy_connect.so
+#LoadModule proxy_ftp_module modules/mod_proxy_ftp.so
+LoadModule proxy_http_module modules/mod_proxy_http.so
+#LoadModule proxy_scgi_module modules/mod_proxy_scgi.so
+#LoadModule proxy_ajp_module modules/mod_proxy_ajp.so
+#LoadModule proxy_balancer_module modules/mod_proxy_balancer.s
+```
+
+- [ ] `DomuentationRoot "/home1/irteam/deploy/naver-example"` 로 잘못되어 있는데도 웹페이지는 똑바로 뜬다. Apache에서 해주는 `DocumentationRoot` 의 설정은 아무 의미가 없는것인가?
+- [ ] `<VirtualHost *:80>` 안에 `ServerName` `ServerAlias` 모두 *example.naver.com* 으로 설정되어 있는데도 웹페이지는 똑바로 뜬다. Tomcat만 중요한가? 이것이 하는 일은 무엇인가
+
+### Tomcat
+
+#### Configuration `tomcat/conf/server.xml`
+
+- [ ] `<Server port="8005" shutdown="SHUTDOWN">` vs `<Server port="8001 shutdown="SHUTDOWN"">` 아무거나 쓰면 되나?
+- [ ] Connector 포트는 어떤걸 쓰고 왜 그걸 쓰나?
+
+```html
+<Connector port="8080" protocol="HTTP/1.1"
+           connectionTimeout="20000"
+           redirectPort="8443" />
+
+<Connector port="9001" protocol="HTTP/1.1"
+          connectionTimeout="20000"
+          redirectPort="8443" />
+```
+
+### nClavis
+
+- [ ] DB정보를 받아오는것 까지는 알겠는데 받아온 정보를 기존에 Spring이 구동될 때 .xml에 실어서 DataSource Bean을 미리 생성해버리는 방식에서 언제/어떻게 runtime 도중에 DB정보를 받아와서 DataSource Bean에 주입시키는지를 모르겠다.
+
+### Database Scale out
+
+- [ ] *Database* 가 2개 이상이 된다면 어떠한 설정으로 모든 DB를 바라보게 할 수 있나?  
+
+#### Vitess
+
+##### Architecture
+
+[Vitess Architecture Overview](/assets/img/for_post/vitess/Vitess_architecture_overview.png)
+
+###### Topology
+
+
+###### vtgate
+
+
+###### vttablet
+
+
+###### vtctId
+
+
+###### vtworker
+
+
+###### History
+
+*출처 - http://vitess.io/overview/*
+
+##### Topology - Detailed
+
+
+
+*출처 - http://vitess.io/user-guide/topology-service.html#replication-graph*
+
+### nClavis
+
+#### 가이드
+*출처 - http://devcafe.nhnent.com/index.php?mid=intro&act=dispWikiContent&vid=skey*
+
+### 기타
+
+- [ ] ACL
+
+## BUG / ERROR
+
+### OAuth
+
+#### RestTemplate
+
+##### 로그인 과정에서 에러
+
+__*HTTP Status 500 - Request processing failed; nested exception is org.springframework.web.client.HttpClientErrorException: 400 Bad Request*__
+
+[RestTemplate get Token Error](/assets/img/for_post/vitess/login_process_resttemplate_get_token_error.PNG)
