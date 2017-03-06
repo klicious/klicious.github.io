@@ -1,0 +1,199 @@
+---
+layout: post
+title:  "자바 성능 튜닝 이야기 사전과제"
+date:   2017-03-05 18:45:33 +0900
+categories: jekyll update
+---
+
+# 자바 성능 튜닝 이야기 사전과제
+
+_출처 - "자바 성능 튜닝 이야기" - 저자 이상민_
+
+## Map, Set, List, Queue 의 차이점을 서술하시오.
+
+### Map
+
+> Map은 키와 값의 쌍으로 구성된 객체의 집합을 처리하기 위한 인터페이스이다.
+> 이 객체는 중복되는 키를 허용하지 않는다.
+
+### Set
+
+> 중복을 허용하지 않는 집합을 처리하기위한 인터페이스이다.
+
+### List
+
+> 순서가 있는 집합을 처리하기 위한 인터페이스이다.
+> 인덱스가 있어 위치를 지정하여 값을 찹을 수 있다.
+> 중복을 허용한다.
+
+### Queue
+
+> 여러 개의 객체를 처리하기 전에 담아서 처리할 때 사용하기 위한 인터페이스이다.
+> FIFO - Fist in First Out
+
+## reflection API 를 이용하여 매개변수로 넘어온 클래스의 종류 및 메소드 목록을 출력하는 메소드를 작성하시오.
+
+```Java
+public void getClassAndMethodInfos(Object object) {
+    Class clazz = object.getClass();
+    getClassInfo(clazz);
+    getFieldInfo(clazz);
+}
+
+private void getClassInfo(Class clazz) {
+    String className = clazz.getName();
+    System.out.fromat("Class Name: %s\n", className);
+    Stromg classCanonicalName = clazz.getCanonicalName();
+    System.out.format("Class Canonical Name: %s\n", classCanonicalName);
+    Stromg simpleName = clazz.getSimpleName();
+    System.out.format("Class Simple Name: %s\n", simpleName);
+    Stromg packageName = clazz.getPackageName();
+    System.out.format("Class Package Name: %s\n", packageName);
+    Stromg classCanonicalName = clazz.toString();
+    System.out.format("toString: %s\n", toString);
+}
+
+private void getMethodInfo(Class clazz) {
+    System.out.println("-----------------");
+    Method[] method1 = clazz.getDeclaredMethods();
+    Method[] method2 = clazz.getMethods();
+    System.out.format("Declared Methods: %d, Methods: %d\n", method1.length, method2.length);
+
+    for (Methods method: method1) {
+        String methodName = method.getName();
+        int modifier = method.getModifiers();
+        String modifierStr = Modifier.toString(modifier);
+        String returnType = method.getReturnType().getSimpleName();
+        Class params[] = method.getParameterTypes();
+        StringBuilder paramStr = new StringBuilder();
+        int paramLen = params.length;
+        if (paramLen != 0) {
+            paramStr.append(params[0].getSimpleName()).append(" arg");
+            for (int i = 1; i < paramLen; i++) {
+                paramStr.append(",").append(params[i].getName()).append(" arg").append(i);
+            }
+        }
+        // method exception info
+        Class exceptions[] = method.getExceptionTypes();
+        StringBuilder exceptionStr = new StringBuilder();
+        int exceptionLen = exceptions.length;
+        if (exceptionLen != 0) {
+            exceptionStr.append("throws").append(exceptions[0].getSimpleName());
+            for(int i = 1; i < exceptionLen; i++) {
+                exceptionStr.append(",").append(exceptions[i].getSimpleName());
+            }
+        }
+        System.out.format("%s %s %s(%s) %s\n", modifierStr, returnType, methodName, paramStr, exceptionStr);
+    }
+}
+
+```
+
+## XML 파서인 SAX 와 DOM 파서의 특징 및 장단점을 서술하시오.
+
+|         | SAX           | DOM  |
+| ------------- |-------------| -----|
+| 처리방식 | 순차적으로 처리하는 이벤트 기반의 모델 | 트리 형태의 데이터로 먼저 만든 후, 데이터를 가공하는 방식 |
+| 평균 응답시간 | fast | slow |
+|   메모리 사용량  | 파일 크기의 2배 | 파일 크기의 10배 |
+
+
+### SAX
+
+의미 - Simnple API for XML
+패키지 - org.xml.sax
+
+#### 어떻게 사용할까
+
+* SAX 파서는 순차적으로 처리하는 이벤트 기반의 모델
+* 원하는 테이터를 만드려면 데이터를 어떻게 처리해야 할지 결정해서 구현해야 한다.
+
+### DOM
+
+의미 - Document Object Model
+패키지 - org.w3c.dom
+
+#### 어떻게 사용할까
+
+* XML을 트리 형태의 데이터로 먼저 만든 후, 그 데이터를 가공하는 방식.
+* SAX와 크게 다른 점 - 따로 Handler를 지정하지 않고, Parsing한 데이터를 Document 클래스의 객체에 담아서 return 해 준다는 것.
+
+## JMX 에 대하여 서술하시오.
+
+JMX - Java Management Extensions
+ - 자바 기반의 모든 Application을 모니터링하기 위해서 만든 기술
+
+### JMX의 4단계 레벨
+
+1. Instrumentation Level
+ - 하나 이상의 MBeans(Management Beans) 제공
+ - MBeans에서 필요한 리소스들의 정보를 취합하여 에이전트로 전달
+ - API를 통해서 최소한의 노력으로 MBean의 처리 내용을 전달
+2. Agent Level
+ - Agent 를 구현하기 위한 스펙 제공
+ - Agent = resource를 관리하는 역할 수행
+ - Mbean 서버와 MBeans를 관리하는 서비스의 ㅈ비합
+3. Distributed Services Level
+ - JMX 관리자를 구현하기 위한 인터페이스와 컴포넌트를 제공
+ - 여러 Agent에서 제공하는 정보를 관리할 수 있는 화면과 같은 부분을 담당
+4. Additional Management Protocol APIs
+ - ...
+
+## JMX를 모니터링할 수 있는 도구를 3개 이상 나열하고 링크도 포함시키시오.
+
+1. [AppDynamics](https://www.appdynamics.com/solutions/appdynamics-java-monitoring/jmx-monitoring/)
+2. [Nagios](https://www.nagios.com/solutions/jmx-monitoring/)
+3. [JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html)
+
+## Web access log 의 패턴을 확인해 보고, 각 패턴에 대하여 서술하시오.
+
+`LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"" combined`
+
+%h - the remote host (e.g. client IP)
+%I - the identity fo the user determined by identd (별로 사용되지 않음)
+%u - the user name determined by HTTP authenticaiton
+%t - the time the request was received
+%r - the request line from the client ("GET / HTTP/1.0")
+%>s - status code sent from the server to the client (200, 404 etc...)
+%b - size of the response to the clint (in bytes)
+Referer - Referer header of the HTTP request
+User-agent - browser identification string
+
+*출처 - [StackOverflow - Understanding Apache's access log
+
+](http://stackoverflow.com/questions/9234699/understanding-apaches-access-log)*
+
+## 자바 GC 종류를 모두 나열 하시오.
+
+|| Young 영역 || Old 영역 |
+|:-----:|:-----:|:-----:|:-----:|
+| Eden | Survivor1 | Survivor2 | 메모리 |
+
+기본적으로 왼쪽에서 오른쪽으로 채워나가는데 Survivor 두개 중 하나는 반드시 비어 있어야 한다.
+
+1. Minor GC: Young 영역에서 발생하는 GC
+2. Major GC: Old 영역이나 Perm 영역에서 발생하는 GC
+
+### 5가지 GC 방식
+
+1. Serial Collector
+2. Parallel Collector
+3. Parallel Compacting Collector
+4. Concurrnent Mark-Sweep (CMS) Collector
+5. Garbage First Collector
+
+## GC 상황을 모니터링할 수 있는 도구를 3개 이상 나열하고, 링크도 포함시키시오.
+
+1. jstat - monitoring tool in HostSpot JVM
+2. jsp OR jstatd
+3. (Java) VisualVM  + Visual GC - Provided by Oracle JDK
+
+*출처 - http://www.cubrid.org/blog/dev-platform/how-to-monitor-java-garbage-collection/*
+
+## JMH 를 사용하여 Java SE 에 있는 List 를 구현한 클래스들의 추가/조회/삭제 기능의 성능을 비교하시오.
+
+[List 성능비교분석](/assets/img/for_post/자바성능_사전과제/list_add_read_remove_performance_evaluation.PNG)
+
+## JMH 를 사용하여 Java SE 에 있는 Map을 구현한 클래스들의 추가/조회/삭제 기능의 성능을 비교하시오.
+
+[Map 성능비교분석](/assets/img/for_post/자바성능_사전과제/map_add_read_remove_performance_evaluation.PNG)
