@@ -70,3 +70,297 @@ FallbackSession(List<Session> sessions)
 
 ### 신입기술교육 (SQL)
  - [ ] Key-length = index의 row당 크기(??)
+
+## NOTE
+
+### Java Performance Tuning
+
+# 자바 성능 튜닝
+
+## JMX 를 Monitoring 할 수 있는 도구
+
+- VisualVM
+ * JVM = JDK 에 포함되어 있는 Visual VM
+ * Visual VM 이 더 좋음
+
+### Profiling
+
+ * 운영서버에서
+ * 너무 많은 정보를 들고 있어서 성능 저하가 너무 심함
+  * 실제 서버에서 사용하기에는 로드가 너무 무거움
+ * JProbe/YourKit/JProfiler
+
+### APM
+
+ * 개발서버에서
+ * domestic
+  * Jennifer
+   * "회사에서 놀면 안되나요?"
+  * Pharos (없어짐)
+  * Exam 이라는 곳에서 만든 tool
+ * Free tool (Domestic opensource APM)
+  * Scouter : LG
+    * 통계기능이 너무 약함
+      * Adapter로 보완 가능
+    * Scalar로 만듬
+  * pinpoint : Naver
+
+WAS -> APM -> Servers(Multiple)
+
+서비스의 성능 판단 기준은 TPS (Transaction per second)
+ - TPS 를 늘리려면 서버를 늘리면 된다.
+
+WAS -> API -> DB
+ - 부하를 줬는데 TPS가 안나온다. + WAS API DB의 CPU 점유율이 1%밖에 안된다. 왜그럴까?
+  - 아직 모른다
+ - 네트워크가 1MB짜리라서 그랬다.
+ - WAS 에서 100% 사용으로 부하가 걸렸다.
+  - 그럼 기본적으로 API DB의 점유율은 높기가 힘들다. (입구에서 트래픽이 다 막히니까)
+ * 대부분의 병목은 CPU에서 일어난다
+ * 잘 만들어진 시스템은 대부분 DB에서 병목이 일어난다.
+ * 모두 100% 일떄는 서버를 늘리는 것만으로는 답이없다. DB 구조를 바꾼다던가 해야함.
+
+BCI - Byte Code Instrument
+ - ASM
+```Java
+void run() {
+
+}
+```
+ - 위와같은 코드가 있을 떄 각 라인에 tag를 붙일수가 있음.
+ - tag를 붙이고 각 라인을 분석해서 통계자료르 산출
+  - JVM 시작할 때 옵션을 넣어주면 tag 들을 붙임
+
+## Web Access log Pattern analysis
+
+*가장 중요한 "%s" Status code*
+HTTP Header code
+ * 100 - informational
+ * 200 - Success
+ * 300 - Redirection
+  * 304 같은 것은 괜찮은 것이다. (내가 가지고 있는 거랑 서버랑 달라서 Modify를 해주어야 하는 형태)
+ * 400 - Client Error
+ * 500 - Server Error
+
+Disk Full이 나게되면 terminal로 접속도 하지 못한다
+ - 로그인 할 때 log를 남겨야하는데 log를 남길 공간이 없어서 접속을 하지 못한다.
+
+Disk 확인 명령어 - du df
+ - df -h
+ - df -k
+ - 중요한 것은 % !!
+
+Access Log 가 찍히는 시점
+ - '걸리는 시간'이 찍히기 때문에 요청이 나갈떄 찍히게 된다.
+ - **장애가 났을 경우**
+  - 장애의 원인을 찾기 위해서는 어떻게 해야할까 ?
+  - Scourter 의 점ㅇ들도 log 도 끝난 시점을 잡아야한다.
+  - 들어오는 입구를 짤라버려야 한다. (Web -> WAS -> DB) 의 구조세어 web -> was로 넘어가는 부분을 끊어야 한다.
+  - 끊고 나면 돌다가 끝날것이고 끝나면 로그가 남아서 에러가 로그에 남게 된다.
+
+## JMH
+
+Hashtable - multi thread safe (?)
+
+
+
+## Java Basic
+
+Interface 와 Abstract의 차이
+  Abstract - extends (중간체) - 확장한다
+  Interface - implements - 구현한다.
+
+Static
+  - 전체 JVM에  한개만이 존재하고 JVM이 죽을 떄 까지 없어지지 않는다. 고정 address.
+
+**Static Block** - for Initialization
+```Java
+static {
+  // do your static initialization`
+}
+```
+
+*Reference Type vs Primitive Type*
+
+```Java
+public class IsAHasA {
+  public static void main(String args[]) {
+    Employee employee = new Employee();
+    employee.id = 1;
+    employee. name = "김형상"
+    int newId = 1;
+    IsAHasA sample = new IsAHasA();
+    sample.changeValues(employee);
+    System.out.println(employee.name);
+  }
+
+  public void changeValues(Employee employee, int newId) {
+    employee.id = 3;
+    employee.name = "김현봉";
+    newId = 100;
+  }
+}
+```
+
+fp - 금융계에 있지 않는 한 크게 중요하지 않다.
+
+### Lambda
+
+참고자료
+ - [Java8 Lambda Cheat Sheet](http://files.zeroturnaround.com/pdf/zt_java8_best_practices.pdf)
+ - [Java8 Slide Share](https://www.slideshare.net/search/slideshow?searchfrom=header&q=java+8&ud=any&ft=all&lang=**&sort=)
+
+#### Anonymous class
+
+```Java
+public vlass ListenerSample {
+  public void getListener() {
+    new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent ae) {
+        System.out.println("Click Detedetd by Anon Class");
+      }
+    };
+    ActionListener listener2 = e -> System.out.println(e.getSource());
+    return listener;
+  }
+}
+
+// 원래는 이렇게 추가해줘야 한다.
+class MyActionListener implements ActionListener {
+
+  @Override
+  public void actionPerformed(ActionEvent ae) {
+    System.out.println(ae.getSource());
+  }
+}
+
+@FunctionalInterface
+interface Operator {
+  int operation=(int x, int y);
+}
+```
+
+#### Stream
+
+```Java
+public class StreamSample {
+
+  private final int CEILING = 100;
+
+  public statis void main(String args[]) {
+    List<Integer> intList = new ArrayList<>();
+
+    for (int i = 0; i < CEILING; i++) {
+      intList.add(i);
+      if(i%3 == 0) {
+        System.out.println(i + " is a multiple of 3");
+      }
+    }
+
+    intList.stream().filter(loop -> loop%3 == 0 && loop != 0).forEach(loop -> System.out.ptinln(loop));
+    intList.stream().filter(loop -> loop%3 == 0 && loop != 0).forEach(System.out::println);
+
+    // List 에서 최대값 뽑기
+    intList.stream().max(Integer::compareTo).get());
+
+    // Parallel Stream - 그냥 Stream 은 Thread 하나를 돌리지만 Parallel Stream은 Multi Thread를 사용한다. 현재 사용중인 시스템의 max Thread를 사용한다.
+    intList.parallelStream().forEach(System.out::println);
+
+    // 0 ~ 10 까지의 List를 사용하는 것과 같은 효과를 볼 수 있다.
+    IntStream.range(0,10).forEach(System.out::println);
+  }
+}
+```
+
+### GC - Garbage Collection
+
+class file 이 class loader를 통해 loading.
+
+Method Area
+  method 의 기본 정보
+
+*Java의 GC는 Runtime Data Areas 중 __Heap__ 에서 일어난다.*
+
+기본적으로 Java Programming을 하면서 Responsiveness(응답속도) vs Throughput(처리량) 을 결정하게 된다
+
+[Oracle Java Garbage Collection Basics](http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html)
+
+#### What is Automatic Garbage Collection?
+
+##### 일반적인 방법
+
+Steps
+
+ 1. Marking
+ 2. Normal Deletion
+ 3. Compacting
+
+##### JVM Generations
+
+  Young Generation -> Old Generation -> Permanent Generation
+  (eden -> S0 / S1) -> (Tenured) -> (Permanent)
+
+ Java8로 가면서 Permanent 는 Metadata Space 로 바뀜.
+
+#### The Generational Garbage Collection Process
+
+  1. Object Allocation
+  2. Filling the Eden Space
+  3. Copying Referenced Objects
+  4. Object Aging
+  5. Additional Aging
+  6. Promotion (Young -> Old)
+
+Survivor를 2개로 나눈 이유
+ - 일반적으로 Young이 Old 보다 빠르다
+ - Old로 너무 많은 데이터를 주지 않기 위해서
+
+Young 영역은 Compaction을 해주는 것이 좋고 무조건 다 한다.
+
+#### static은 절대로 GC가 되지 않는다
+
+```Java
+public class HeapAddSample {
+  List<String> list = new ArrayList<>();
+  public static void main(String args[]) {
+    HeapAddSample sample = new HeapAddSample();
+    for(int loop = 0; loop < 1000; loop++) {
+      sample.addList();
+    }
+  }
+
+  private void addList() throws Exception {
+    for(int i = 0; i < 1024000; i++) {
+      list.add("Rookie" + System.currentTimeMillis());
+    }
+    Threa.sleep(2000);
+    System.out.println("sleeping");
+  }
+}
+```
+
+이걸  VisualVM 에서 확인 할 수 있다.
+
+#### Concurrent Mark Sweep Garbage Collection (CMS GC)
+
+Compact를 하지 않아서 엄청 빠르다
+ - 하긴 하는데 혹시나 하게되면 재앙이 인다. 4GByte 메모리 기준으로 4~5초가 걸린다.
+
+BUT mark + sweep 을 하는 메모리 + CPU 를 추가로 한다.
+
+full GC하는데 4~5초면 못쓸지경이다.
+
+#### G1 Garbage Collector
+
+Generation이 있긴 하지만 정해져 있지는 않다.
+바둑판식 배열을 사용한다.
+Copy하는 작업이 줄어든다.
+속도도 무지하게 빠르다.
+이동하는 장소는 JVM이 알아서 마음대로 정한다.
+
+
+#### Command LIne Switches
+
+XX 가 붙어있다 = 안바뀐다
+Xms 가 붙어있다 = 바뀐다.
