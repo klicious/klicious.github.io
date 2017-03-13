@@ -9,7 +9,7 @@ categories: jekyll update
 
 ## PATRON 소개
 
-- 메인페이지 OR  상표정도 노출
+- 메인페이지 OR 상표정도 노출
   - 여러 페이지 콜라주도 가능
 - FOCUS
   - 주최자와 동반 성장할 수 있는 모임
