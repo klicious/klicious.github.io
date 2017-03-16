@@ -7,59 +7,48 @@ categories: jekyll update
 
 # NOTE dump
 
+## TO DO LIST
+
+ - [ ] [WIKI](http://wiki.nhnent.com/pages/viewpage.action?pageId=233670315) 읽기
+
+### 한도관리
+
+
+## 업무 관련
+
+
+
+
 ## Skill Set
 
-### crontab
 
-#### commands
+## ??
 
-`crontab -l` : `crontab`에 현재 등록되어 돌아가고 있는 `script`들의 목록이 보여진다
-`crontab -e` : `crontab`-edit 으로 생각하면 쉬울 것 같다. 어떤 `script`를 얼마나 자주 돌릴지 설정해주는 설정 모드이다.
+ - *빌링 > NE빌링개발팀 > 공통 > Convention* 가이드 에 있는 [링크](https://google-styleguide.googlecode.com/svn/trunk/javaguide.html) fail.
+ - 장애대처 프로세스 > 장애가 발생하면 *DL* 공유 (장애발생에 대한 공지) - tts등록 : DL??
+ -
 
-#### scheduling format
 
-```sh
-#*/30 * * * * [xxxx.sh]
-```
+## MAYBE??
 
-각 asterix는 분 시 일 월 년 을 의미한다.
-/n == n주기를 나타낸다. /30 = 30분 주기, /15 = 15분 주기
-
-## Server DOWN
-
-### 2017-03-07 10:10 dev.patron.nhnent.com 서버 죽음
-
-왜??
-
-```sh
-Mar 07, 2017 10:59:16 AM org.apache.catalina.startup.ContextConfig beforeStart
-SEVERE: Exception fixing docBase for context [/location]
-java.io.FileNotFoundException: /home1/irteam/apps/apache-tomcat-8.5.11/webapps/location-1.0.0-BUILD-SNAPSHOT.war (No such file or directory)
-
-..... 중도 생략 .....
-
-Caused by: java.lang.IllegalArgumentException: The main resource set specified [/home1/irteam/apps/apache-tomcat-8.5.11/webapps/location-1.0.0-BUILD-SNAPSHOT.war] is not valid
-
-```
-
-__*결론 -apache-tomcat-8/webapps/ 에 있어야할 .war 파일이 없어서 생기는 에러였다.*__
-
-같은 포트에 여러개의 서버를 올릴 때 해주어야 하는 설정이 몇 개 있다.
-
-?!??
-서버에 location.war 를 기존에 배포했던 patron이라는 서비스와 함께 사용하고 싶다.
-!?!!
-
-1. *[path-to-tomcat]/conf/server.xml* 설정파일 안의 *Service* -> *Engine* 에 다음과 같은 *Context* 태그를 추가한다.
-```html
-<Engine name="Catalina" defaultHost="localhost" unpackWARs="false">
-  <Host name="localhost"  unpackWARS="true" appBase="webapps">
-     <Context path="" docBase="[path-to-patron]/patron"/>
-     <Context path="/location" docBase="location.war"/>
-  </Host>
-</Engine>
-
-```
-2. Tomcat 설정파일에서 정해놓은 `docBase`의 default path는 *[path-to-apache-tomcat]/webapps/* 이므로 해당 폴더에 location.war 파일을 넣어준다.
-
-__*그럼 해결 !*__
+- [ ] [NE 서버 연결](http://wiki.nhnent.com/pages/viewpage.action?pageId=247657143)
+   - [ ] 서버 연결 전 사전 절차
+     - [ ] 고정IP 신청
+     - [ ] VPN 계정 신청 및 VPN 접속 프로그램 설치
+     - [ ] Gateway/Kerberos 계정 생성
+     - [ ] SSH 접속 프로그램 설치
+   - [ ] 리눅스 서버 인증/접근권한 신청 & VPN 접근권한 신청
+     - [ ] NTree > 서비스요청목록 > 인증/접근권한 > 인증/접근권한통합 요청 (리눅스 접근권한, 윈도우접근권한) > 요청하기
+     - [ ] 계정 생성과 함께 접근할 서버 목록도 신청
+   - Linux Gateway
+     - [ ] 접속 Gateway 주소 = fgw.nhnent.com ???
+- [ ] DB 접속
+   - [ ] alpha - Cubrid Manager
+   - [ ] real - SQL Gateway client
+   - [ ] ACL 오픈 요청
+     - [ ] 네크워크 ACL 등록/변경 요청
+     - [ ] SQL Gateway 권한 신청
+- [ ] 배포 및 운영
+   - [nDeploy](https://ndeploy.nhnent.com/workspace)
+   - Build - Jenkins 빌드
+   - CI(Continuous Integration)
