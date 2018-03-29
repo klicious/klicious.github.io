@@ -1,0 +1,65 @@
+---
+layout: post
+title:  "PAYCO 빌링 1주차 일지"
+date:   2017-03-12 10:00:00 +0900
+categories: jekyll update
+---
+
+# 회고
+
+# 기술
+
+### crontab
+
+#### commands
+
+`crontab -l` : `crontab`에 현재 등록되어 돌아가고 있는 `script`들의 목록이 보여진다
+`crontab -e` : `crontab`-edit 으로 생각하면 쉬울 것 같다. 어떤 `script`를 얼마나 자주 돌릴지 설정해주는 설정 모드이다.
+
+#### scheduling format
+
+```sh
+#*/30 * * * * [xxxx.sh]
+```
+
+각 asterix는 분 시 일 월 년 을 의미한다.
+/n == n주기를 나타낸다. /30 = 30분 주기, /15 = 15분 주기
+
+## Server DOWN
+
+### 2017-03-07 10:10 dev.patron.nhnent.com 서버 죽음
+
+왜??
+
+```sh
+Mar 07, 2017 10:59:16 AM org.apache.catalina.startup.ContextConfig beforeStart
+SEVERE: Exception fixing docBase for context [/location]
+java.io.FileNotFoundException: /home1/irteam/apps/apache-tomcat-8.5.11/webapps/location-1.0.0-BUILD-SNAPSHOT.war (No such file or directory)
+
+..... 중도 생략 .....
+
+Caused by: java.lang.IllegalArgumentException: The main resource set specified [/home1/irteam/apps/apache-tomcat-8.5.11/webapps/location-1.0.0-BUILD-SNAPSHOT.war] is not valid
+
+```
+
+__*결론 -apache-tomcat-8/webapps/ 에 있어야할 .war 파일이 없어서 생기는 에러였다.*__
+
+같은 포트에 여러개의 서버를 올릴 때 해주어야 하는 설정이 몇 개 있다.
+
+?!??
+서버에 location.war 를 기존에 배포했던 patron이라는 서비스와 함께 사용하고 싶다.
+!?!!
+
+1. *[path-to-tomcat]/conf/server.xml* 설정파일 안의 *Service* -> *Engine* 에 다음과 같은 *Context* 태그를 추가한다.
+```html
+<Engine name="Catalina" defaultHost="localhost" unpackWARs="false">
+  <Host name="localhost"  unpackWARS="true" appBase="webapps">
+     <Context path="" docBase="[path-to-patron]/patron"/>
+     <Context path="/location" docBase="location.war"/>
+  </Host>
+</Engine>
+
+```
+2. Tomcat 설정파일에서 정해놓은 `docBase`의 default path는 *[path-to-apache-tomcat]/webapps/* 이므로 해당 폴더에 location.war 파일을 넣어준다.
+
+__*그럼 해결 !*__
