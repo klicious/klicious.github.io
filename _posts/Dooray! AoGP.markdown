@@ -1,4 +1,9 @@
-DOOOOOOOOOOOOOOOORAY!
+---
+layout: post
+title:  "DOOOOOOOOOOOOOOOORAY!"
+date:   2018-03-29 13:41:05 +0900
+categories: jekyll update
+---
 
 일상생활에서 가장 많이 쓰는 어플 중 하나인 메신저 !
 목적에 따라 다른 여러 종류의 메신저를 사용하고는 하는데... (소셜 - 카카오, 비밀 - 스냅챗/텔레그램, 외국 - 왓츠업 등...)
