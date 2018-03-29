@@ -44,7 +44,7 @@ Hello
 
 업무를 하면서 여라 파일들을 수시로 주고 받기 쉽상인데 과거에 주고 받았던 파일들을 쉽게 열람하도록 도와준다 !
 
-![두레이 파일 모아보기](/assets/img/for_post/forced/dooray_file_conglomerate_example.png)
+![두레이 파일 모아보기](/assets/img/for_post/forced/dooray_file_conglomerate_example.PNG)
 
 
 ## 멘션
@@ -56,12 +56,12 @@ Hello
 
 _**이 기능이 좋은 이유**_ 는, 업무를 진행하다 보면 정말 많은 수의 단체방이 생기기 마련인데, 이 모든 단체방에서 생기는 메세지에 대한 알림을 받다보면 정작 중요한 내가 읽어야 하는 메세지를 놓치기 쉽상이다. 그래서 이를 미연에 방지하기 위해, 내가 읽어야 하는 메세지들만 `@`멘션을 통해서 알람이 오다보니 중요한 메세지를 놓치지 않을 수 있게 된다.
 
-![두레이 멘션 캡쳐](/assets/img/for_post/forced/dooray_mention_example.png)
+![두레이 멘션 캡쳐](/assets/img/for_post/forced/dooray_mention_example.PNG)
 
 그렇다면 방에 있는 모두에게 이 방 메세지를 보라고 알람을 주고 싶다면 ? `@Channel` 을 쓰면 된다. 그럼 방 내에 있는 모든 사람에게 알람이 간다.
 또한 `@` 멘션을 활용 할 때 매번 사람 이름을 전부 타이핑 할 필요 없이 `@` 만 써줘도 현재 멘션 가능한 사람들의 리스트가 나오게 되고 이 리스트를 마우스클릭, 또는 키보드로 선택해서 자동완성을 할 수 있다.
 
-![두레이 멘션 목록 캡쳐](/assets/img/for_post/forced/dooray_at_mention_example.png)
+![두레이 멘션 목록 캡쳐](/assets/img/for_post/forced/dooray_at_mention_example.PNG)
 
 ### 초대
 
@@ -71,13 +71,13 @@ _**이 기능이 좋은 이유**_ 는, 업무를 진행하다 보면 정말 많�
 
 과거 있엇던 멘션을 모두 모아볼 수 있는 기능이다.
 
-![두레이 멘션 모아보기](/assets/img/for_post/forced/dooray_mention_conglomerate_example.png)
+![두레이 멘션 모아보기](/assets/img/for_post/forced/dooray_mention_conglomerate_example.PNG)
 
 ## 링크 모아보기
 
 파일 모아보기와 같이 링크도 모아볼 수 있다!
 
-![두레이 링크 모아보기](/assets/img/for_post/forced/dooray_hyperlink_conglomerate_example.png)
+![두레이 링크 모아보기](/assets/img/for_post/forced/dooray_hyperlink_conglomerate_example.PNG)
 
 ## 마무리
 
