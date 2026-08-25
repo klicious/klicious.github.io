@@ -7,11 +7,15 @@
 <meta name="description" content="Why I harden approval gates instead of removing them — and design them to teach the system they guard.">
 <link rel="icon" href="../../favicon.png">
 <link rel="stylesheet" href="../../style.css">
+<script>(function(){try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');}catch(e){}})();</script>
 </head>
 <body>
 <div class="page">
 
-  <nav class="crumb"><a href="../../">← taeyeon kwon</a></nav>
+  <div class="topbar">
+    <a href="../../">← taeyeon kwon</a>
+    <button id="theme-toggle" type="button" aria-label="Switch color theme">light</button>
+  </div>
 
   <article class="essay">
     <header>
@@ -63,5 +67,17 @@
   </footer>
 
 </div>
+<script>
+(function () {
+  var btn = document.getElementById('theme-toggle');
+  function label() { btn.textContent = document.documentElement.classList.contains('light') ? 'dark' : 'light'; }
+  btn.addEventListener('click', function () {
+    var light = document.documentElement.classList.toggle('light');
+    try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) {}
+    label();
+  });
+  label();
+})();
+</script>
 </body>
 </html>

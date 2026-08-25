@@ -7,15 +7,24 @@
 <meta name="description" content="Taeyeon Kwon — platform engineering lead in Seoul. Agentic delivery systems, evaluation gates, and the operating model behind enterprise AI adoption.">
 <link rel="icon" href="favicon.png">
 <link rel="stylesheet" href="style.css">
+<script>(function(){try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');}catch(e){}})();</script>
 </head>
 <body>
 <div class="page">
 
+  <div class="topbar">
+    <span></span>
+    <button id="theme-toggle" type="button" aria-label="Switch color theme">light</button>
+  </div>
+
   <header class="masthead">
-    <h1>Taeyeon Kwon <span class="hanja">권태연</span></h1>
+    <div class="name-row">
+      <span class="seal" aria-hidden="true">권</span>
+      <h1>Taeyeon Kwon <span class="hanja">권태연</span></h1>
+    </div>
     <p class="role">platform engineering lead · seoul</p>
     <p class="intro">I lead platform engineering at a multi-strategy asset manager in Seoul, where my team runs its delivery on coding agents inside a regulated financial environment. Most of my work is the machinery that makes that safe and honest: evaluation gates, approval surfaces designed to teach, and the event infrastructure underneath.</p>
-    <p class="intro">I write here about the operating model behind enterprise AI adoption — what it actually takes for a team to ship with agents and still understand what it owns.</p>
+    <p class="intro second">I write here about the operating model behind enterprise AI adoption — what it actually takes for a team to ship with agents and still understand what it owns.</p>
   </header>
 
   <section>
@@ -52,5 +61,17 @@
   </footer>
 
 </div>
+<script>
+(function () {
+  var btn = document.getElementById('theme-toggle');
+  function label() { btn.textContent = document.documentElement.classList.contains('light') ? 'dark' : 'light'; }
+  btn.addEventListener('click', function () {
+    var light = document.documentElement.classList.toggle('light');
+    try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) {}
+    label();
+  });
+  label();
+})();
+</script>
 </body>
 </html>
