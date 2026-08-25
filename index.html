@@ -1,5 +1,77 @@
----
-layout: home
-title: Home
-comments: false
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taeyeon Kwon</title>
+<meta name="description" content="Taeyeon Kwon — platform engineering lead in Seoul. Agentic delivery systems, evaluation gates, and the operating model behind enterprise AI adoption.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+<script>(function(){try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light');}catch(e){}})();</script>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <span></span>
+    <button id="theme-toggle" type="button" aria-label="Switch color theme">light</button>
+  </div>
+
+  <header class="masthead">
+    <div class="name-row">
+      <span class="seal" aria-hidden="true">권</span>
+      <h1>Taeyeon Kwon <span class="hanja">권태연</span></h1>
+    </div>
+    <p class="role">platform engineering lead · seoul</p>
+    <p class="intro">I lead platform engineering at a multi-strategy asset manager in Seoul, where my team runs its delivery on coding agents inside a regulated financial environment. Most of my work is the machinery that makes that safe and honest: evaluation gates, approval surfaces designed to teach, and the event infrastructure underneath.</p>
+    <p class="intro second">I write here about the operating model behind enterprise AI adoption — what it actually takes for a team to ship with agents and still understand what it owns.</p>
+  </header>
+
+  <section>
+    <h2>Writing</h2>
+    <a class="row" href="essays/cognitive-debt/">
+      <div class="row-title">The real cost of vibe coding is cognitive debt <span class="arrow">→</span></div>
+      <div class="row-desc">Why I harden approval gates instead of removing them — and design them to teach the system they guard.</div>
+      <div class="row-meta">essay · august 2026</div>
+    </a>
+  </section>
+
+  <section>
+    <h2>Work</h2>
+    <a class="row" href="https://github.com/klicious/gefjon-growth-public">
+      <div class="row-title">gefjon-growth <span class="arrow">↗</span></div>
+      <div class="row-desc">A production hiring-automation system: a config-driven, multi-agent pipeline from intake to interview kits. Its per-stage workflow engine was committed in August 2025, two months before Agent Skills launched — the history preserves the dates.</div>
+      <div class="row-meta">public mirror · python · agentic workflows</div>
+    </a>
+    <a class="row" href="https://github.com/klicious/banga-engine">
+      <div class="row-title">banga-engine <span class="arrow">↗</span></div>
+      <div class="row-desc">방아 — a two-tier event-queue engine: a crash-safe, fsync-first JSONL journal with per-class coalescing and a peek-only screener census. 386 tests, all offline.</div>
+      <div class="row-meta">event infrastructure · python · 386 tests</div>
+    </a>
+    <a class="row" href="https://github.com/klicious/yimir-root">
+      <div class="row-title">yimir-root <span class="arrow">↗</span></div>
+      <div class="row-desc">The July-2025 template the hiring system grew from: an AI-native knowledge-base and workflow skeleton from the Gemini-CLI era, kept as a dated record of where the approach started.</div>
+      <div class="row-meta">workflow template · july 2025</div>
+    </a>
+  </section>
+
+  <footer>
+    <a href="https://github.com/klicious">github</a>
+    <a href="https://linkedin.com/in/tae-yeon-kwon-25b274112">linkedin</a>
+  </footer>
+
+</div>
+<script>
+(function () {
+  var btn = document.getElementById('theme-toggle');
+  function label() { btn.textContent = document.documentElement.classList.contains('light') ? 'dark' : 'light'; }
+  btn.addEventListener('click', function () {
+    var light = document.documentElement.classList.toggle('light');
+    try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) {}
+    label();
+  });
+  label();
+})();
+</script>
+</body>
+</html>
