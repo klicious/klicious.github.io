@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The real cost of vibe coding is cognitive debt — Taeyeon Kwon</title>
+<meta name="description" content="Why I harden approval gates instead of removing them — and design them to teach the system they guard.">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="page">
+
+  <nav class="crumb"><a href="/">← taeyeon kwon</a></nav>
+
+  <article class="essay">
+    <header>
+      <h1>The real cost of vibe coding is cognitive debt</h1>
+      <p class="dateline">august 2026 · taeyeon kwon</p>
+    </header>
+
+    <div class="body">
+      <p>The real cost of vibe coding is not technical debt. It is cognitive debt, and I design my systems specifically against it.</p>
+
+      <p>For the past year, my team has relied on coding agents, and an industry consensus has formed. We cannot let agents build indefinitely without understanding what they are actually building. The research community has a name for this. An <a href="https://arxiv.org/abs/2506.08872">MIT Media Lab study</a> coined &ldquo;cognitive debt&rdquo; after finding that LLM-assisted writers showed weaker neural connectivity and could not quote their own output minutes later. Addy Osmani calls the software version <a href="https://addyosmani.com/blog/comprehension-debt/">&ldquo;comprehension debt.&rdquo;</a> It is the growing gap between how much code exists and how much of it any human genuinely understands. Unlike technical debt, it breeds false confidence. It stays invisible until something breaks and nobody knows why.</p>
+
+      <p>The oldest framing is still the sharpest. Peter Naur argued back in 1985 that a program&rsquo;s real value is the theory of it in its builders&rsquo; heads. Code without that theory is legacy code. Agents did not create this problem, but they industrialized it by generating code much faster than we can comprehend it.</p>
+
+      <p>I learned this the hard way. When I first moved my team onto agents, I put human checkpoints everywhere. We reviewed the plan, checked the output, and approved. Then we scaled up. We ran multiple projects and agent sessions in parallel, and my own supervision quality collapsed. I became a mindless acceptor of recommendations. The checkpoints were still there, but my understanding was gone. That is the part most teams miss. The real failure mode is not removing the human from the loop. It is leaving the human in the loop as a rubber stamp.</p>
+
+      <p>Most people respond by either removing the gates entirely or adding more hollow checkpoints. I think both approaches miss the mark because they treat approval gates merely as control mechanisms. I redesigned my gates around a different question: what should human attention actually buy? My answer is system understanding, not just output checking.</p>
+
+      <p>In the delivery system I operate today, every gated work item opens an interactive session. It explains the decision in front of me, highlighting what is changing, why the old design existed, and the impact of the new one. I do not just approve a diff. I answer a decision engineered to teach me the system. Approval time becomes understanding time. The debt gets repaid exactly when it would otherwise accrue. <span class="seam">(To be clear, this exact mechanism is running in my environment today.)</span></p>
+
+      <p>The version I am building now goes a step further. It treats my own engagement as a measurable input. If the system notices that my approvals have degraded into mindless nodding, the gate demotes itself to a mere notice. An unengaged gate is just safety theater. Only engaged gates actually teach. <span class="seam">(This is a ratified design decision currently in build. I am saying &ldquo;building&rdquo; rather than &ldquo;shipped&rdquo; on purpose.)</span></p>
+
+      <p>There is evidence backing this up. Anthropic published <a href="https://www.anthropic.com/research/AI-assistance-coding-skills">a study on how AI affects coding skills</a>. Engineers who fully delegated tasks scored poorly on comprehension. However, those who used patterns that bundled explanations with conceptual questions scored higher than some people writing code by hand. The key variable was never whether the AI builds. It was the engagement structure at the human touchpoints.</p>
+
+      <p>I want to be careful not to overclaim. That study focused on junior engineers, while I am a senior operator running my own systems. I treat my thesis as a solid design bet, not a completely solved problem. Furthermore, gates only teach at escalation points. The quiet majority of agent work lands cleanly and still accrues debt. Comprehension surfaces are a repayment mechanism, not an amnesty.</p>
+
+      <p>But this bet matters for every enterprise adopting AI. Delivery will accelerate, review queues will grow, and approvals will turn into theater right when the stakes are highest. The teams that thrive will be the ones who redesign what their engineers&rsquo; attention buys. You cannot own, fix, or defend a system to a regulator if nobody on your team holds a theory of it.</p>
+
+      <p>We need to harden our gates, make them teach, and demote them when they do not. That is the difference between vibe coding and actual agentic engineering.</p>
+    </div>
+
+    <hr class="rule">
+
+    <div class="sources">
+      <h2>Sources</h2>
+      <ul>
+        <li>Kosmyna et&nbsp;al., <a href="https://arxiv.org/abs/2506.08872">&ldquo;Your Brain on ChatGPT&rdquo;</a> — MIT Media Lab (arXiv:2506.08872)</li>
+        <li>Addy Osmani, <a href="https://addyosmani.com/blog/comprehension-debt/">&ldquo;Comprehension Debt&rdquo;</a></li>
+        <li>Peter Naur, &ldquo;Programming as Theory Building&rdquo; (1985)</li>
+        <li>Anthropic, <a href="https://www.anthropic.com/research/AI-assistance-coding-skills">&ldquo;How AI assistance impacts the formation of coding skills&rdquo;</a> (2026)</li>
+      </ul>
+    </div>
+  </article>
+
+  <footer>
+    <a href="/">home</a>
+    <a href="https://github.com/klicious">github</a>
+    <a href="https://linkedin.com/in/tae-yeon-kwon-25b274112">linkedin</a>
+  </footer>
+
+</div>
+</body>
+</html>

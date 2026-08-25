@@ -1,0 +1,229 @@
+/* klicious.github.io — dossier-document surface.
+   Retrieved: Dossier genre (66ch measure, 1.6+ leading, thin rules, no card-chrome);
+   Editorial Dossier type pairing (Newsreader / Inter / JetBrains Mono).
+   Invented (disclosed): light-first paper/ink palette extrapolated from the
+   Obangsaek Ink tokens — accent = 회청 #4a6b8a (retrieved hue). */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #faf7f2;
+  --bg-raised: #f3efe7;
+  --ink: #1f1c17;
+  --ink-2: #6d675d;
+  --line: #e3ded4;
+  --accent: #4a6b8a;
+  --measure: 66ch;
+  --serif: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --sans: 'Inter', 'Avenir Next', 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141210;
+    --bg-raised: #1b1916;
+    --ink: #e8e2d4;
+    --ink-2: #9a927f;
+    --line: #2a2723;
+    --accent: #7d9cba;
+  }
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { font-size: 17px; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem 6rem;
+}
+
+/* ---- masthead ---- */
+
+.masthead { margin-bottom: 3.5rem; }
+
+.masthead h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 2rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.masthead .hanja {
+  color: var(--ink-2);
+  font-weight: 400;
+  font-size: 1.35rem;
+  margin-left: 0.4rem;
+}
+
+.masthead .role {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  margin-top: 0.6rem;
+  letter-spacing: 0.01em;
+}
+
+.masthead .intro {
+  margin-top: 1.4rem;
+  max-width: var(--measure);
+  color: var(--ink);
+}
+
+.masthead .intro + .intro { margin-top: 0.8rem; }
+
+/* ---- sections as baseline rows ---- */
+
+section { margin-top: 3.2rem; }
+
+section > h2 {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-2);
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.row {
+  display: block;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+}
+
+.row:hover .row-title, .row:focus-visible .row-title { color: var(--accent); }
+
+.row-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.15rem;
+  color: var(--ink);
+  transition: color 120ms ease;
+}
+
+.row-title .arrow { color: var(--ink-2); font-family: var(--sans); font-size: 0.9rem; }
+
+.row-desc {
+  margin-top: 0.25rem;
+  color: var(--ink-2);
+  font-size: 0.94rem;
+  max-width: var(--measure);
+}
+
+.row-meta {
+  margin-top: 0.35rem;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--ink-2);
+  letter-spacing: 0.02em;
+}
+
+/* ---- essay page ---- */
+
+.crumb {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  margin-bottom: 3rem;
+}
+
+.essay header { margin-bottom: 2.6rem; }
+
+.essay h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 2.1rem;
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  max-width: 24ch;
+}
+
+.essay .dateline {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink-2);
+  margin-top: 1rem;
+}
+
+.essay .body p {
+  max-width: var(--measure);
+  margin-top: 1.35rem;
+}
+
+.essay .body p:first-child {
+  margin-top: 0;
+  font-family: var(--serif);
+  font-size: 1.22rem;
+  line-height: 1.55;
+}
+
+.essay .seam {
+  font-size: 0.94rem;
+  color: var(--ink-2);
+}
+
+.essay .rule {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2.6rem 0;
+  max-width: var(--measure);
+}
+
+.essay .sources {
+  max-width: var(--measure);
+  font-size: 0.88rem;
+  color: var(--ink-2);
+}
+
+.essay .sources h2 {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.6rem;
+}
+
+.essay .sources li { margin: 0.3rem 0 0.3rem 1.1rem; }
+
+/* ---- shared ---- */
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+a:focus-visible, .row:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+footer {
+  margin-top: 4.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink-2);
+  display: flex;
+  gap: 1.6rem;
+}
+
+footer a { color: var(--ink-2); min-height: 44px; display: inline-flex; align-items: center; }
+
+footer a:hover { color: var(--accent); }
+
+@media (max-width: 480px) {
+  html { font-size: 16px; }
+  .page { padding-top: 3rem; }
+  .masthead h1 { font-size: 1.65rem; }
+  .essay h1 { font-size: 1.7rem; }
+}
